@@ -1,7 +1,10 @@
+package testrunner;
+
+import config.Setup;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
+import pages.LoginPage;
 
 public class LoginTestRunner extends Setup {
     LoginPage loginPage;
