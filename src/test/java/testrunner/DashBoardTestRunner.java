@@ -1,6 +1,7 @@
 package testrunner;
 
 import com.github.javafaker.Faker;
+import config.EmployeeModel;
 import config.Setup;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
@@ -27,11 +28,18 @@ public class DashBoardTestRunner extends Setup {
         String lastName = faker.name().lastName();
         String userName = faker.name().username();
         String password = faker.internet().password();
-        dashBoardPage.createUser(firstName, lastName, userName, password);
+
+        EmployeeModel model=new EmployeeModel();
+        model.setFirstName(firstName);
+        model.setLastName(lastName);
+        model.setUserName(userName);
+        model.setPassword(password);
+
+        dashBoardPage.createUser(model);
         String textTitleExpected = driver.findElement(By.xpath("//*[contains(text(),\"Personal Details\")]")).getText();
-        Thread.sleep(5000);
+        Thread.sleep(7000);
         if (textTitleExpected.contains("Personal Details")) {
-            Utils.saveEmployeeInfo(firstName, lastName, userName, password);
+            Utils.saveEmployeeInfo(model);
         }
     }
 }
